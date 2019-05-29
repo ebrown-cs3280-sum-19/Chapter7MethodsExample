@@ -10,12 +10,12 @@ namespace Chapter_7_Methods_Random_Guess
         /// <summary>
         /// First number displayed
         /// </summary>
-        private int iFirstNumber;
+        private int firstNumber;
 
         /// <summary>
         /// Second number displayed
         /// </summary>
-        private int iSecondNumber;
+        private int secondNumber;
 
         #endregion
 
@@ -37,8 +37,8 @@ namespace Chapter_7_Methods_Random_Guess
             Random rndNumber = new Random();
 
             //Using the random number object create two random numbers between 1 and 10
-            iFirstNumber = rndNumber.Next(1, 11);
-            iSecondNumber = rndNumber.Next(1, 11);
+            firstNumber = rndNumber.Next(1, 11);
+            secondNumber = rndNumber.Next(1, 11);
 
             //Displays the numbers to the user
             DisplayNumbers();
@@ -54,8 +54,8 @@ namespace Chapter_7_Methods_Random_Guess
         /// </summary>
         private void DisplayNumbers()
         {
-            lblNumber1.Text = iFirstNumber.ToString();
-            lblNumber2.Text = Convert.ToString(iSecondNumber);
+            lblNumber1.Text = firstNumber.ToString();
+            lblNumber2.Text = Convert.ToString(secondNumber);
         }
 
         /// <summary>
@@ -68,21 +68,21 @@ namespace Chapter_7_Methods_Random_Guess
         /// <param name="e"></param>
         private void cmdSubmit_Click(object sender, System.EventArgs e)
         {
-            int iUserGuess = 0;				 //The user's guess
-            bool bNumbersMatch = false;  //Whether or not the numbers match
-            int iResult;				 //The result of the numbers
+            int userGuess = 0;				 //The user's guess
+            bool doNumbersMatch = false;  //Whether or not the numbers match
+            int result;				 //The result of the numbers
 
             //Get the user's guess
-            iUserGuess = Int32.Parse(txtUserGuess.Text);
+            userGuess = Int32.Parse(txtUserGuess.Text);
 
             //Calculate the result and find out if the user's guess is correct
-            iResult = CalculateResult(iUserGuess, ref bNumbersMatch);
+            result = CalculateResult(userGuess, ref doNumbersMatch);
 
             //Display the answer
-            lblAnswer.Text = iResult.ToString();
+            lblAnswer.Text = result.ToString();
 
             //Display the appropriate message
-            if (bNumbersMatch == true)
+            if (doNumbersMatch == true)
             {
                 lblRightWrong.Text = "You are right!!!";
             }
@@ -97,25 +97,25 @@ namespace Chapter_7_Methods_Random_Guess
         /// This method also returns whether or not the user's guess is correct through a 
         /// reference parameter.
         /// </summary>
-        /// <param name="iGuessedNumber">The number that the user guessed.</param>
+        /// <param name="guessedNumber">The number that the user guessed.</param>
         /// <param name="bIsMatch">A reference paramter that returns whether or not the user's guess was correct.</param>
         /// <returns>Result</returns>
-        private int CalculateResult(int iGuessedNumber, ref bool bIsMatch)
+        private int CalculateResult(int guessedNumber, ref bool isMatch)
         {
             int iCalcResult;	//The result of the addition
 
             //Calculate the Result
-            iCalcResult = iFirstNumber + iSecondNumber;
+            iCalcResult = firstNumber + secondNumber;
 
             //Determine if the result of the addition matches the user's guess and set the 
             //reference parameter accordingly
-            if (iCalcResult == iGuessedNumber)
+            if (iCalcResult == guessedNumber)
             {
-                bIsMatch = true;
+                isMatch = true;
             }
             else
             {
-                bIsMatch = false;
+                isMatch = false;
             }
 
             //return the result of the calculation
